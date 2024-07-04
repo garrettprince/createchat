@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Box from "../components/Box";
 
 export default function Home() {
   return (
     <main>
-      <div>Test</div>
+      <div className="">
+        <Box />
+      </div>
     </main>
   );
 }
