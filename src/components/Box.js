@@ -19,6 +19,8 @@ function Box() {
                 width: isExpanded ? "24rem" : "7rem",
                 height: isExpanded ? "3rem" : "7rem",
                 borderRadius: isExpanded ? ".75rem" : ".75rem",
+                paddingLeft: isExpanded ? ".375rem" : 0,
+                paddingRight: isExpanded ? ".375rem" : 0,
               }}
               transition={{
                 type: "spring",
@@ -29,15 +31,15 @@ function Box() {
               key="square"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              className="bg-gray-300 cursor-pointer flex items-center justify-between"
+              className="border border-gray-300 cursor-pointer flex items-center justify-between "
               layout
             >
-                {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
-              <motion.div className="flex items-center ">
+              {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
+              <motion.div className="flex items-center space-x-[.375rem] ">
                 <motion.img
                   src="https://res.cloudinary.com/dvwbpgk6p/image/upload/v1689568913/Long%20Addition/Posts/Logs/Test%20Log/tatsuroyour_nfxfac.jpg"
                   className={`${
-                    isExpanded ? "ml-[.375rem]" : "w-[7rem] h-[7rem] rounded-xl"
+                    isExpanded ? "" : "w-[7rem] h-[7rem] rounded-xl"
                   }`}
                   animate={{
                     width: isExpanded ? "2.25rem" : "7rem",
@@ -51,6 +53,13 @@ function Box() {
                     damping: 30,
                   }}
                 />
+
+                <motion.div
+                  className={`${isExpanded ? " text-black text-xs" : "hidden"}`}
+                >
+                  <p className="font-bold">Song title</p>
+                  <p className="text-gray-500">Artist name</p>
+                </motion.div>
               </motion.div>
 
               {/* RIGHT SIDE OF PLAYER/PLAY CONTROLS */}
@@ -62,9 +71,7 @@ function Box() {
               >
                 <PlayIcon
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className={`${
-                    isExpanded ? "w-8 h-8 text-black " : "hidden"
-                  }`}
+                  className={`${isExpanded ? "w-8 h-8 text-black " : "hidden"}`}
                 />
                 <ForwardIcon
                   onClick={() => setIsExpanded(!isExpanded)}
