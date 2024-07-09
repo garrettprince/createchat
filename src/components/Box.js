@@ -21,9 +21,9 @@ function Box() {
         <AnimatePresence mode="wait">
           {isSquare && (
             <motion.div
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={() => setIsExpanded(true)}
               animate={{
-                width: isExpanded ? "24rem" : "7rem",
+                width: isExpanded ? "22rem" : "7rem",
                 height: isExpanded ? "3rem" : "7rem",
                 borderRadius: isExpanded ? "3rem" : ".5rem",
                 paddingLeft: isExpanded ? ".375rem" : 0,
@@ -38,7 +38,7 @@ function Box() {
               key="square"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              className=" cursor-pointer flex items-center justify-between  bg-white border border-gray-200"
+              className="hover:scale-105  cursor-pointer flex items-center justify-between  bg-white "
               layout
             >
               {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
@@ -59,6 +59,7 @@ function Box() {
                     duration: 0.5,
                     damping: 30,
                   }}
+                  onClick={() => (setIsPlaying(true), setIsExpanded(true))}
                 />
 
                 <motion.div
@@ -76,10 +77,21 @@ function Box() {
                 exit={{ opacity: 0 }}
                 className="flex items-center space-x-2"
               >
-                <PauseIcon
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className={`${isExpanded ? "w-8 h-8 text-black " : "hidden"}`}
-                />
+                {isPlaying ? (
+                  <PauseIcon
+                    onClick={() => setIsPlaying(false)}
+                    className={`${
+                      isExpanded ? "w-8 h-8 text-black " : "hidden"
+                    }`}
+                  />
+                ) : (
+                  <PlayIcon
+                    onClick={() => setIsPlaying(true)}
+                    className={`${
+                      isExpanded ? "w-8 h-8 text-black " : "hidden"
+                    }`}
+                  />
+                )}
                 <ForwardIcon
                   onClick={() => setIsExpanded(!isExpanded)}
                   className={`${
