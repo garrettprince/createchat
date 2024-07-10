@@ -19,4 +19,39 @@
   body {
     background-color: #f1f0ee;
   }
+
+  #range1 {
+    -webkit-appearance: none;
+
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+  }
+
+  #range1::-webkit-slider-runnable-track {
+    height: 3px;
+    background: rgb(82 82 91);
+  }
+
+  #range1::-moz-range-track {
+    height: 3px;
+    background: rgb(82 82 91);
+  }
+
+  #range1::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 5px;
+    background-color: #eee;
+    box-shadow: -400px 0 0 400px #fff;
+  }
+
+  #range1::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    box-shadow: -407px 0 0 400px #fff;
+  }
 }

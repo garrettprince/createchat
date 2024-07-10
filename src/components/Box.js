@@ -24,10 +24,10 @@ function Box() {
               onClick={() => setIsExpanded(true)}
               animate={{
                 width: isExpanded ? "22rem" : "7rem",
-                height: isExpanded ? "3rem" : "7rem",
+                height: isExpanded ? "3.25rem" : "7rem",
                 borderRadius: isExpanded ? "3rem" : ".5rem",
-                paddingLeft: isExpanded ? ".375rem" : 0,
-                paddingRight: isExpanded ? ".375rem" : 0,
+                paddingLeft: isExpanded ? ".6rem" : 0,
+                paddingRight: isExpanded ? ".6rem" : 0,
               }}
               transition={{
                 type: "spring",
@@ -38,10 +38,11 @@ function Box() {
               key="square"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              className="hover:scale-105  cursor-pointer flex items-center justify-between  bg-white "
+              className="cursor-pointer flex items-center justify-between  bg-white "
               layout
             >
               {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
+
               <motion.div className="flex items-center space-x-[.375rem] ">
                 <motion.img
                   src="https://res.cloudinary.com/dvwbpgk6p/image/upload/v1689568913/Long%20Addition/Posts/Logs/Test%20Log/tatsuroyour_nfxfac.jpg"
@@ -61,7 +62,6 @@ function Box() {
                   }}
                   onClick={() => (setIsPlaying(true), setIsExpanded(true))}
                 />
-
                 <motion.div
                   className={`${isExpanded ? " text-black text-xs" : "hidden"}`}
                 >
@@ -69,7 +69,6 @@ function Box() {
                   <p className="text-gray-500">Artist name</p>
                 </motion.div>
               </motion.div>
-
               {/* RIGHT SIDE OF PLAYER/PLAY CONTROLS */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -99,6 +98,20 @@ function Box() {
                   }`}
                 />
               </motion.div>
+
+              {/* SONG PROGRESS BAR */}
+              {/* <div className="relative h-1">
+                <input
+                  type="range"
+                  min="0"
+                  step="0.001"
+                  max="1"
+                  value="1"
+                  onChange
+                  id="range1"
+                  className="bg-zinc-600 w-full absolute rounded"
+                />
+              </div> */}
             </motion.div>
           )}
         </AnimatePresence>
