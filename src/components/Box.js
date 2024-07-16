@@ -9,15 +9,16 @@ import {
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { songData } from "@/lib/songData";
+import RiveTest  from "./RiveTest";
 
 function Box() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSquare, setIsSquare] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex-col space-y-4">
+      <div className="flex-col space-y-4 border border-black">
         <AnimatePresence mode="wait">
           {isSquare && (
             <motion.div
@@ -43,7 +44,7 @@ function Box() {
             >
               {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
 
-              <motion.div className="flex items-center space-x-[.375rem] ">
+              <motion.div className="flex items-center space-x-[.45rem] ">
                 <motion.img
                   src="https://res.cloudinary.com/dvwbpgk6p/image/upload/v1689568913/Long%20Addition/Posts/Logs/Test%20Log/tatsuroyour_nfxfac.jpg"
                   className={`${
@@ -65,8 +66,8 @@ function Box() {
                 <motion.div
                   className={`${isExpanded ? " text-black text-xs" : "hidden"}`}
                 >
-                  <p className="font-bold">Song title</p>
-                  <p className="text-gray-500">Artist name</p>
+                  <p className="font-bold">In Your Eyes</p>
+                  <p className="text-gray-500">Tatsuro Yamashita</p>
                 </motion.div>
               </motion.div>
               {/* RIGHT SIDE OF PLAYER/PLAY CONTROLS */}
@@ -138,6 +139,11 @@ function Box() {
               </div>
             );
           })}
+        </div>
+        <div className="h-20 w-20 border border-black">
+            <div className="relative left-0 bottom-0">
+                <RiveTest />
+            </div>
         </div>
       </div>
     </div>

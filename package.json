@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.4",
+    "@rive-app/react-canvas-lite": "^4.13.3",
     "ai": "^3.2.16",
     "framer-motion": "^11.2.12",
     "next": "14.2.4",
