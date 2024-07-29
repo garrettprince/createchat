@@ -6,25 +6,32 @@ import {
   XMarkIcon,
   PlayIcon,
   ForwardIcon,
+  BackwardIcon,
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { songData } from "@/lib/songData";
-import RiveTest  from "./RiveTest";
+import RiveTest from "./RiveTest";
 
 function Box() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSquare, setIsSquare] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex-col space-y-4 border border-black">
+      <div className="flex-col space-y-4 ">
         <AnimatePresence mode="wait">
           {isSquare && (
             <motion.div
               onClick={() => setIsExpanded(true)}
               animate={{
-                width: isExpanded ? "22rem" : "7rem",
+                width:
+                  isExpanded === true && isCollapsed === false
+                    ? "22rem"
+                    : isCollapsed === true && isExpanded === true
+                    ? "6rem"
+                    : "7rem",
                 height: isExpanded ? "3.25rem" : "7rem",
                 borderRadius: isExpanded ? "3rem" : ".5rem",
                 paddingLeft: isExpanded ? ".6rem" : 0,
@@ -39,14 +46,14 @@ function Box() {
               key="square"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              className="cursor-pointer flex items-center justify-between  bg-white "
+              className="cursor-pointer flex items-center justify-between  bg-white shadow-sm mx-auto"
               layout
             >
               {/* LEFT SIDE OF PLAYER/ALBUM COVER */}
 
               <motion.div className="flex items-center space-x-[.45rem] ">
                 <motion.img
-                  src="https://res.cloudinary.com/dvwbpgk6p/image/upload/v1689568913/Long%20Addition/Posts/Logs/Test%20Log/tatsuroyour_nfxfac.jpg"
+                  src="https://res.cloudinary.com/dvwbpgk6p/image/upload/v1722213801/New%20Garrett.cool/Modern%20Player/losleo_wrza3i.jpg"
                   className={`${
                     isExpanded && isPlaying ? "animate-spin-slower" : ""
                   }`}
@@ -61,14 +68,31 @@ function Box() {
                     duration: 0.5,
                     damping: 30,
                   }}
-                  onClick={() => (setIsPlaying(true), setIsExpanded(true))}
+                  onClick={() => (
+                    setIsPlaying(true),
+                    setIsExpanded(true),
+                    setIsCollapsed(false)
+                  )}
                 />
-                <motion.div
-                  className={`${isExpanded ? " text-black text-xs" : "hidden"}`}
-                >
-                  <p className="font-bold">In Your Eyes</p>
-                  <p className="text-gray-500">Tatsuro Yamashita</p>
-                </motion.div>
+                {!isCollapsed && (
+                  <motion.div
+                    className={`${
+                      isExpanded ? " text-black text-xs" : "hidden"
+                    }`}
+                    transition={{
+                      type: "spring",
+                      stiffness: 250,
+                      duration: 0.5,
+                      damping: 30,
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <p className="font-bold">Real Life</p>
+                    <p className="text-gray-500">LOS LEO</p>
+                  </motion.div>
+                )}
               </motion.div>
               {/* RIGHT SIDE OF PLAYER/PLAY CONTROLS */}
               <motion.div
@@ -77,6 +101,18 @@ function Box() {
                 exit={{ opacity: 0 }}
                 className="flex items-center space-x-2"
               >
+                <BackwardIcon
+                  onClick={() => (
+                    setIsExpanded(!isExpanded), setIsCollapsed(!isCollapsed)
+                  )}
+                  className={`${
+                    isExpanded === true && isCollapsed === false
+                      ? "w-6 h-6 text-black"
+                      : isCollapsed === true && isExpanded === true
+                      ? "hidden"
+                      : "hidden"
+                  }`}
+                />
                 {isPlaying ? (
                   <PauseIcon
                     onClick={() => setIsPlaying(false)}
@@ -95,7 +131,11 @@ function Box() {
                 <ForwardIcon
                   onClick={() => setIsExpanded(!isExpanded)}
                   className={`${
-                    isExpanded ? "w-6 h-6 text-black mx-2" : "hidden"
+                    isExpanded === true && isCollapsed === false
+                      ? "w-6 h-6 text-black"
+                      : isCollapsed === true && isExpanded === true
+                      ? "hidden"
+                      : "hidden"
                   }`}
                 />
               </motion.div>
@@ -124,6 +164,7 @@ function Box() {
           onClick={() => {
             setIsSquare(!isSquare);
             setIsExpanded(false);
+            setIsCollapsed(false);
           }}
           layout
         >
@@ -140,10 +181,10 @@ function Box() {
             );
           })}
         </div>
-        <div className="h-20 w-20 border border-black">
-            <div className="relative left-0 bottom-0">
-                <RiveTest />
-            </div>
+        <div className="h-20 w-20 mx-auto border border-black">
+          <div className="absolute left-0 bottom-0">
+            <RiveTest />
+          </div>
         </div>
       </div>
     </div>
