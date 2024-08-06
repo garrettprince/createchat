@@ -30,7 +30,7 @@ function Box() {
                   isExpanded === true && isCollapsed === false
                     ? "22rem"
                     : isCollapsed === true && isExpanded === true
-                    ? "6rem"
+                    ? "3.4rem"
                     : "7rem",
                 height: isExpanded ? "3.25rem" : "7rem",
                 borderRadius: isExpanded ? "3rem" : ".5rem",
@@ -99,7 +99,13 @@ function Box() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center space-x-2"
+                className={`${
+                  isExpanded === true && isCollapsed === false
+                    ? "flex items-center space-x-2"
+                    : isCollapsed === true && isExpanded === true
+                    ? "hidden"
+                    : "hidden"
+                }`}
               >
                 <BackwardIcon
                   onClick={() => (
@@ -170,7 +176,7 @@ function Box() {
         >
           {!isSquare ? "Open" : "Close"}
         </div>
-        <div className="flex">
+        {/* <div className="flex">
           {songData.map((song) => {
             return (
               <div key={song.title}>
@@ -180,12 +186,12 @@ function Box() {
               </div>
             );
           })}
-        </div>
-        <div className="h-20 w-20 mx-auto border border-black">
+        </div> */}
+        {/* <div className="h-20 w-20 mx-auto border border-black">
           <div className="absolute left-0 bottom-0">
             <RiveTest />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
